@@ -1,0 +1,180 @@
+:root{
+  --theme-color: #f9fafb;
+  --theme-bg: grey;
+  --main-bg: #14162b;
+}
+
+body {
+  max-width: 50em;
+  margin: 0 auto;
+  font-family: "Nunito Sans";
+  background-color: var(--main-bg);
+  color: var(--theme-color);
+}
+.search-bar-wrapper {
+  background-color: var(--main-bg);
+  padding: 0.7em 0;
+  border-radius: 4px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#search-bar {
+  background: none;
+  outline: none;
+  border: none;
+  color: var(--theme-color);  
+  height: 100%;
+  font-size: medium;
+  flex-grow: 1;
+  width: 100%;
+  height: fit-content;
+  &:focus {
+    border-bottom: 1px solid var(--theme-color);
+  }
+}
+
+button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+button > i {
+  &:hover {
+    color: var(--theme-bg)
+  }
+}
+
+i {
+  color: var(--theme-color);
+}
+
+ul {
+  list-style: none;
+  padding-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+li {
+  display: flex;
+  gap: 1em;
+}
+
+li > div {
+  flex-grow: 1;
+}
+
+h1 {
+  font-weight: 500;
+  margin-block-start: 0;
+  margin-block-end: 0.2em;
+}
+
+.book-detail {
+  color: var(--theme-bg);
+  margin-block: 0;
+}
+
+.book-detail, i {
+  color: var(--theme-bg);
+}
+
+.rate {
+  float: left;
+  height: 30px;
+  width: fit-content;
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:20px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★ ';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal > div {
+  position: relative;
+  background-color: var(--main-bg);
+  height: fit-content;
+  border-radius: 4px;
+  padding: 2em;
+  min-width: 50em;
+  display: flex;
+  gap: 1em;
+}
+
+.modal-left {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.review-form {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+textarea {
+  resize: none;
+  flex-grow: 1;
+  font-family: "Nunito Sans";
+}
+
+.submit {
+  background: none;
+  outline: none;
+  border: 1px solid grey;
+  color:grey;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.submit:hover {
+  color: var(--theme-bg);
+  border: 1px solid var(--theme-bg);
+}
+
+.exit {
+  position:absolute;
+  right: 10px;
+  top: 10px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="/styles/main.css" />
+	<title>Document</title>
+</head>
+
+<body>
+	<form action="/search" method="POST" class="search-bar-wrapper">
+		<i class="fa-solid fa-book fa-lg"></i>
+		<input id="search-bar" type="text" name="search"
+			placeholder="<%= locals.error || 'Search a book using ISBN and write a review' %>" />
+		<button type="submit" class="btn btn-success">
+			<i class="fa-solid fa-magnifying-glass fa-lg"></i>
+		</button>
+	</form>
+	<ul>
+		<% for(let review of reviews ) { %>
+			<li>
+				<img src="https://covers.openlibrary.org/b/id/<%= review.book.covers[0] %>-M.jpg" />
+				<div>
+					<h1>
+						<%= review.book.title %> <a href="/edit/<%= review.isbn %>"><i class="fa-solid fa-pen-to-square"></i></a>
+					</h1>
+					<p class="book-detail">
+						By <% for( let author of review.authors) { %>
+							<span>
+								<%= author.name + (author !=review.authors[review.authors.length - 1] ? "," : "" )%>
+							</span>
+							<% } %> • <%= review.book.publish_date %> •<span>
+										<% for( let index=0; index < review.rating; index++ ) { %>
+											<i class="fa-solid fa-star"></i>
+											<% } %>
+												<% for( let index=0; index < 5 - review.rating; index++ ) { %>
+													<i class="fa-regular fa-star"></i>
+													<% } %>
+									</span>
+					</p>
+
+					<p>
+						<%= review.description %>
+					</p>
+				</div>
+			</li>
+			<% } %>
+	</ul>
+	<% if (locals.book) { %> <%- include('partials/review.ejs') %>
+			<% } %>
+</body>
+<script src="https://kit.fontawesome.com/8eefc84e6e.js" crossorigin="anonymous"></script>
+
+</html>
